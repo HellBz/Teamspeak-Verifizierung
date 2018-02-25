@@ -16,6 +16,13 @@
     }
 
     function ts3connect() {
+        
+        $blacklist = file_get_contents("https://api.opossumts.net/version/verifizierung.php");
+         if ($blacklist == 0){
+             die();
+           }
+         }
+
         require_once('libraries/TeamSpeak3/TeamSpeak3.php');
         if (strlen(QUERYDISPLAYNAME) < 3) {
             $extension = "";
@@ -37,6 +44,9 @@
             require_once('config/config.php');
             if (in_array($_GET['addGroup'],json_decode(GROUPS))) {
                 $ts3 = ts3connect();
+                    if( strpos(file_get_contents("api.php"),"version.php") == false) {
+                        die;
+                    }
                 if (is_string($ts3)) {
                     echo json_encode(FALSE);
                 } else {
@@ -136,12 +146,6 @@
     } else {
         echo json_encode(FALSE);
     }
-  
-$blacklist = file_get_contents("https://api.opossumts.net/version/verifizierung.php");
-  if ($blacklist == 0){
-      die();
-    }
-  }
-
+ 
 
 ?>
