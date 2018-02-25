@@ -27,7 +27,7 @@
     }
 
     function versionCheck() {
-      $version = file_get_contents("https://api.opossumts.net/version/verifizierung.txt");
+      $version = file_get_contents("https://api.opossumts.net/version/verifizierung.php");
       if ($version == VERSION){
           return(true);
       } else {
